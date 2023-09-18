@@ -1,0 +1,11 @@
+<mat-sidenav-container class="mainWrapper" autosize autoFocus dir="ltr">
+    <mat-sidenav [mode]="mode" [(opened)]="opened" class="sidebarNav">
+        <app-sidebar (toggleSidebar)="opened = $event"></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content class="contentWrapper">
+        <app-header [opened]="opened" (openValue)="opened = $event"></app-header>
+        <div class="pageWrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

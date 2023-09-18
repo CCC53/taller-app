@@ -1,0 +1,13 @@
+<div>
+    <p *ngIf="type === 'employee'">Agregar mecanico</p>
+    <p *ngIf="type === 'spare-part'">Agregar refaccion</p>
+    <div>
+        <form [formGroup]="form" (submit)="onSubmit()">
+            <formly-form [model]="model" [form]="form" [fields]="fields"></formly-form>
+            <div class="buttons">
+                <button mat-raised-button color="warn" type="button" (click)="close()">Cancelar</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Agregar</button>
+            </div>
+        </form>
+    </div>
+</div>

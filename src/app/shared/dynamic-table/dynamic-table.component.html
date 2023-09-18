@@ -1,0 +1,54 @@
+<div *ngIf="options.allowSearch">
+  <mat-form-field class="search">
+    <mat-label>Buscar</mat-label>
+    <input [(ngModel)]="search" matInput placeholder="Buscar" (keyup)="handleSearchInput()">
+    <mat-icon matSuffix color="primary">search</mat-icon>
+  </mat-form-field>
+</div>
+
+<div>
+  <table mat-table [dataSource]="data.data" class="table">
+    <ng-container *ngFor="let column of options.columns" [matColumnDef]="column.key">
+        <mat-header-cell *matHeaderCellDef>{{ column.label }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="!column.pipe">{{ row[column.key] }}</ng-container>
+          <ng-container *ngIf="column.pipe == 'date'">{{ row[column.key] | date: 'dd/MM/yyyy'}}</ng-container>
+          <ng-container *ngIf="column.pipe == 'currency'">{{ row[column.key] | currency:"MXN":"symbol" }}</ng-container>
+          <ng-container *ngIf="column.pipe == 'employeeRole'">
+            <mat-chip class="badge" [color]="row[column.key] == 'admin' ? 'primary' : 'accent'" selected>
+              {{ row[column.key] | employeeRole }}
+            </mat-chip>
+          </ng-container>
+          <ng-container *ngIf="column.pipe == 'sparePartType'">
+            <mat-chip class="badge" [color]="row[column.key] == 'maintenance' ? 'primary' : 'accent'" class="badge" selected>
+              {{ row[column.key] | sparePartType }}
+            </mat-chip>
+          </ng-container>
+          <ng-container *ngIf="column.pipe == 'vehicleType'">
+            <mat-chip class="badge" selected>
+              {{ row[column.key] | vehicleType }}
+            </mat-chip>
+          </ng-container>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button *ngIf="options.showIcon" mat-icon-button color="primary" (click)="viewItem.emit(element)">
+            <mat-icon *ngIf="options.allowedEdit">edit</mat-icon>
+            <mat-icon *ngIf="!options.allowedEdit">visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteItem.emit(element)" *ngIf="options.allowedDelete">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</table>
+<div class="noEntries" *ngIf="data.data.length == 0">
+  <p>No hay elementos</p>
+</div>
+<mat-paginator *ngIf="options.allowPagination" [length]="data.totalCount" (page)="handlePage($event)" [pageSize]="pageSize"
+  [pageIndex]="pageIndex" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+</div>

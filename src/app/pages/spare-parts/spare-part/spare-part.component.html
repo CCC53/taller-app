@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Refacción</h1>
+    <hr>
+    <button class="button" mat-raised-button color="primary" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Regresar</span>
+    </button>
+    <form class="form" [formGroup]="form" (submit)="onSubmit()">
+        <formly-form [form]="form" [fields]="fields" [options]="options" [model]="model" (modelChange)="modelChange($event)"></formly-form>
+        <button class="button w-100" mat-raised-button color="primary" [disabled]="!changed || !form.valid">Enviar</button>
+    </form>
+</div>

@@ -1,0 +1,16 @@
+<div class="flex-layout">
+    <div class="branding">
+        <h1>Taller App</h1>
+    </div>
+    <mat-list class="sidebar-list">
+        <mat-list-item *ngFor="let route of routes" [routerLink]="route.route" class="menu-list-item cursor" 
+            routerLinkActive="mat-toolbar mat-primary activeMenu" (click)="toggle()">
+            <mat-icon class="margin">{{route.icon}}</mat-icon>
+            <span>{{route.label}}</span>
+        </mat-list-item>
+    </mat-list>
+    <button class="logout-button" mat-raised-button color="warn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Cerrar sesion</span>
+    </button>
+</div>

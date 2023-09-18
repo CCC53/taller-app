@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Servicio</h1>
+    <hr>
+    <button class="button" mat-raised-button color="primary" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Regresar</span>
+    </button>
+    <form class="form" [formGroup]="form" (submit)="onSubmit()">
+        <formly-form [form]="form" [fields]="fields" [options]="options" [model]="model" (modelChange)="modelChange($event)"></formly-form>
+        <button class="button w-100" mat-raised-button color="primary" [disabled]="!changed || !form.valid">Enviar</button>
+    </form>
+    <div class="assignTable" *ngIf="id && id != 'nuevo'">
+        <h1>Mecanicos asignados</h1>
+        <hr>
+        <button class="button margin" mat-raised-button color="primary" (click)="addNewEmployee()">Agregar</button>
+        <app-dynamic-table [data]="employeesTableData" [options]="employeesTableOptions" (viewItem)="viewEmployee($event)"
+        (deleteItem)="removeEmployee($event)"></app-dynamic-table>
+    </div>
+    <div class="assignTable" *ngIf="id && id != 'nuevo'">
+        <h1>Refacciones a utilizar</h1>
+        <hr>
+        <button class="button margin" mat-raised-button color="primary" (click)="addNewSparePart()">Agregar</button>
+        <app-dynamic-table [data]="sparePartsTableData" [options]="sparePartsTableOptions"
+            (viewItem)="viewSparePart($event)" (deleteItem)="removeSparePart($event)"></app-dynamic-table>
+    </div>
+</div>
