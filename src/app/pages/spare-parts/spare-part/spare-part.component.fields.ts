@@ -51,24 +51,36 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
     },
     {
         key: 'supplier',
-        type: 'input',
+        type: 'select',
         props: {
             label: 'Proveedor',
-            placeholder: 'Ingrese el proveedor de la refacción',
+            placeholder: 'Seleccione un proveedor',
             required: true,
-        },
-        validators: {
-            validation: ['text-only']
+            options: [
+                { label: 'Seleccione un proveedor', value: null },
+                { label: 'ATE', value: 'ATE' },
+                { label: 'BERU', value: 'BERU' },
+                { label: 'BOSCH', value: 'BOSCH' },
+                { label: 'CONTITECH', value: 'CONTITECH' },
+                { label: 'LUK', value: 'LUK' },
+                { label: 'MORESA', value: 'MORESA' },
+                { label: 'NAKATA', value: 'NAKATA' },
+                { label: 'PENSTOSIN', value: 'PENSTOSIN' },
+                { label: 'VALEO', value: 'VALEO' }
+            ]
         }
     },
     {
         key: 'purchaseDate',
         type: 'datepicker',
-        props: {
+        templateOptions: {
             label: 'Fecha de adquisicion',
             placeholder: 'Fecha de adquisicion de la refacción',
             required: true,
-            type: 'date'
+            type: 'date',
+            datepickerOptions: {
+                min: new Date()
+            }
         }
     },
     {

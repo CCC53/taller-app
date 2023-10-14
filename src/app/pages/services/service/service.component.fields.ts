@@ -29,11 +29,14 @@ export const serviceViewFields: FormlyFieldConfig[] = [
     {
         key: 'startDate',
         type: 'datepicker',
-        props: {
+        templateOptions: {
             label: 'Fecha de inicio',
             placeholder: 'Fecha de inicio del servicio',
             required: true,
-            type: 'date'
+            type: 'date',
+            datepickerOptions: {
+                min: new Date()
+            }
         }
     },
     {
@@ -44,7 +47,9 @@ export const serviceViewFields: FormlyFieldConfig[] = [
             placeholder: 'Fecha de termino del servicio',
             required: true,
             type: 'date'
-        }
+        },
+        expressionProperties: { 'templateOptions.datepickerOptions.min': 
+            'new Date(new Date(model.startDate).setDate(new Date(model.startDate).getDate() + 1))', }
     },
     {
         key: 'vehicleID',
