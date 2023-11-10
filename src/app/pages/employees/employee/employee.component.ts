@@ -78,10 +78,9 @@ export class EmployeeComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSuccessAlert();
-        }, 10);
-        this.loadEmployee(res.employee);
-        this.router.navigate(["..", res.employee.id], { relativeTo: this.activatedRoute });
+          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.employee.id);
+          this.loadEmployee(res.employee);
+        }, 200);
       },
       error: error => this.alertsService.showErrorAlert(error)
     })

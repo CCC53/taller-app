@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { AssignmentsModalComponent } from '../shared/assignments-modal/assignments-modal.component';
 import { AssignmentsModalData } from '../types/assignments';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,18 @@ export class AlertsService {
       data: data,
       disableClose: true,
       minWidth: '800px'
+    })
+  }
+
+  showSucessCreate(router: Router, activatedRoute: ActivatedRoute, id: string) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro guardado correctamente',
+      showConfirmButton: true,
+    }).then(res => {
+      if (res.isConfirmed) {
+        router.navigate(["..", id],  { relativeTo: activatedRoute })
+      }
     })
   }
 }
