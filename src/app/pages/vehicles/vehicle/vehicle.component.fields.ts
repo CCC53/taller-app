@@ -74,6 +74,18 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         }
     },
     {
+        key: 'chassis',
+        type: 'input',
+        props: {
+            label: 'Numero de chasis',
+            placeholder: 'Ingrese el numero de chasis',
+            required: true
+        },
+        validators: {
+            validation: ['text-number']
+        }
+    },
+    {
         key: 'motor',
         type: 'input',
         props: {
