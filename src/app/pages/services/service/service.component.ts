@@ -165,10 +165,9 @@ export class ServiceComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSuccessAlert();
-        }, 10);
-        this.loadService(res.service);
-        this.router.navigate(["..", res.service.id], { relativeTo: this.activatedRoute });
+          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.service.id);
+          this.loadService(res.service);
+        }, 200);
       },
       error: error => this.alertsService.showErrorAlert(error)
     })
@@ -188,7 +187,6 @@ export class ServiceComponent implements OnInit {
       })
     }
   }
-
 
   viewEmployee(employee: Employee) {
     this.router.navigateByUrl(`/dashboard/employees/${employee.id}`);

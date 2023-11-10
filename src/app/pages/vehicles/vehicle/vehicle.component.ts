@@ -74,10 +74,9 @@ export class VehicleComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSuccessAlert();
-        }, 10);
-        this.loadVehicle(res.vehicle);
-        this.router.navigate(["..", res.vehicle.id], { relativeTo: this.activatedRoute });
+          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.vehicle.id);
+          this.loadVehicle(res.vehicle);
+        }, 200);
       },
       error: error => this.alertsService.showErrorAlert(error)
     })

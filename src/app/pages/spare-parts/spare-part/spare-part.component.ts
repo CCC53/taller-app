@@ -75,10 +75,9 @@ export class SparePartComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSuccessAlert();
-        }, 10);
-        this.loadSparePart(res.sparePart);
-        this.router.navigate(["..", res.sparePart.id], { relativeTo: this.activatedRoute });
+          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.sparePart.id);
+          this.loadSparePart(res.sparePart);
+        }, 200);
       },
       error: error => this.alertsService.showErrorAlert(error)
     })
