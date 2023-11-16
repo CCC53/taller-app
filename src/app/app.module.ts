@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormlyModule } from '@ngx-formly/core';
+import { FORMLY_CONFIG, FormlyModule } from '@ngx-formly/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -16,6 +16,8 @@ import { MaterialModule } from './material.module';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { appValidators } from './validators/app.validators';
 import { MY_FORMATS } from './app.date-format';
+import { checkEmailConfig } from './validators/form.validators';
+import { AsyncValidatorsService } from './services/async-validators.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { MY_FORMATS } from './app.date-format';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: FORMLY_CONFIG, multi: true, useFactory: checkEmailConfig, deps: [AsyncValidatorsService] }
   ],
   bootstrap: [AppComponent]
 })

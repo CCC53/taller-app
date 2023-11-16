@@ -37,6 +37,9 @@ export const employeeViewFields: FormlyFieldConfig[] = [
         },
         validators: {
             validation: ['email']
+        },
+        asyncValidators: {
+            validation: ['existent-email']
         }
     },
     {
