@@ -10,14 +10,6 @@ export enum ValidRoles {
     MECHANIC = "mechanic"
 }
 
-export interface TokenDecoded {
-    id: string;
-    name: string;
-    email: string;
-    exp: number;
-    role: ValidRoles;
-}
-
 export interface ValidateAuth {
     valid: boolean;
 }

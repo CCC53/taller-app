@@ -1,5 +1,5 @@
 import { emailValidator, numbersOnlyValidator, textNumbersOnlyValidator,
-            textOnlyValidator, maxLengthPassword } from './form.validators';
+            textOnlyValidator, maxLengthPassword } from './form.validators.handlers';
 
 export const appValidators = {
     validators: [

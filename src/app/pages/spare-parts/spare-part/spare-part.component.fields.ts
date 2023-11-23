@@ -77,10 +77,10 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
             label: 'Fecha de adquisicion',
             placeholder: 'Fecha de adquisicion de la refacción',
             required: true,
-            type: 'date',
-            datepickerOptions: {
-                min: new Date()
-            }
+            type: 'date'
+        },
+        expressionProperties: {
+            'templateOptions.datepickerOptions.min': 'formState.isNew ? new Date() : new Date(model.purchaseDate)'
         }
     },
     {

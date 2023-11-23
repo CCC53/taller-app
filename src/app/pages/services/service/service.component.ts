@@ -28,7 +28,7 @@ export class ServiceComponent implements OnInit {
   isLoading: boolean = false;
   changed: boolean = false;
   form = new FormGroup({});
-  model: ServiceFieldsModel = { issue: '', startDate: null, endDate: null, vehicleID: '' }
+  model: ServiceFieldsModel = {} as ServiceFieldsModel; 
   original: ServiceFieldsModel = {} as ServiceFieldsModel;
   options: FormlyFormOptions = serviceFormOptions;
   fields: FormlyFieldConfig[] = serviceViewFields;

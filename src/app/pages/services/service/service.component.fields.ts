@@ -2,8 +2,8 @@ import { FormlyFieldConfig, FormlyFormOptions } from "@ngx-formly/core";
 
 export interface ServiceFieldsModel {
     issue: string;
-    startDate: Date | null;
-    endDate: Date | null;
+    startDate: Date;
+    endDate: Date;
     vehicleID: string;
 }
 
@@ -33,10 +33,10 @@ export const serviceViewFields: FormlyFieldConfig[] = [
             label: 'Fecha de inicio',
             placeholder: 'Fecha de inicio del servicio',
             required: true,
-            type: 'date',
-            datepickerOptions: {
-                min: new Date()
-            }
+            type: 'date'
+        },
+        expressionProperties: {
+            'templateOptions.datepickerOptions.min': 'formState.isNew ? new Date() : new Date(model.startDate)'
         }
     },
     {
@@ -48,8 +48,10 @@ export const serviceViewFields: FormlyFieldConfig[] = [
             required: true,
             type: 'date'
         },
-        expressionProperties: { 'templateOptions.datepickerOptions.min': 
-            'new Date(new Date(model.startDate).setDate(new Date(model.startDate).getDate() + 1))', }
+        expressionProperties: {
+            'templateOptions.datepickerOptions.min':
+                'formState.isNew ? new Date(new Date(model.startDate).setDate(new Date(model.startDate).getDate() + 1)): new Date(model.endDate)'
+        }
     },
     {
         key: 'vehicleID',
