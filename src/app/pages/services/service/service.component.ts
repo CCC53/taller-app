@@ -140,8 +140,8 @@ export class ServiceComponent implements OnInit {
     this.form.reset();
     this.model = { 
       issue: issue,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
+      startDate: startDate,
+      endDate: endDate,
       vehicleID: vehicleID
     }
     this.original = loadash.cloneDeep({issue, startDate, endDate, vehicleID});
