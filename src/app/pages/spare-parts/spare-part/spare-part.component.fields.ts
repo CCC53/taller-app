@@ -22,6 +22,7 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Nombre',
+            maxLength: 15,
             placeholder: 'Ingrese el nombre de la refacción',
             required: true,
         },
@@ -34,6 +35,8 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Cantidad disponible',
+            min: 1,
+            maxLength: 15,
             placeholder: 'Ingrese la cantidad disponible de la refacción',
             required: true,
             type: 'number'
@@ -44,6 +47,8 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Precio unitario',
+            min: 1,
+            max: 9999,
             placeholder: 'Ingrese el precio de la refacción',
             required: true,
             type: 'number'

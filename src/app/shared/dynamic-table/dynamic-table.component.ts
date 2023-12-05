@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
-import { SearchService } from 'src/app/services/search.service';
-import { DynamicTableData, DynamicTableOptions, PaginatorData } from 'src/app/types/shared';
-
+import Swal from 'sweetalert2';
+import { AlertsService } from 'src/app/services/alerts.service';
+import { DynamicTableService } from 'src/app/services/dynamic-table.service';
+import { DynamicTableData, DynamicTableOptions } from 'src/app/types/shared';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -12,12 +14,14 @@ import { DynamicTableData, DynamicTableOptions, PaginatorData } from 'src/app/ty
 export class DynamicTableComponent implements OnInit {
   // Options
   @Input() options: DynamicTableOptions = {} as DynamicTableOptions;
-  @Input() data: DynamicTableData = {} as DynamicTableData;
-  // Actions
-  @Output() viewItem: EventEmitter<any> = new EventEmitter();
-  @Output() deleteItem: EventEmitter<any> = new EventEmitter();
-  @Output() changePage: EventEmitter<PaginatorData> = new EventEmitter();
-  
+  // Optional data
+  @Input() populatedData?: DynamicTableData;
+  @Output() removeFromService: EventEmitter<any> = new EventEmitter();
+  // Table
+  data: DynamicTableData = {
+    data: [],
+    totalCount: 0
+  };
   displayedColumns: string[] = [];
   search: string | null = null;
   
@@ -26,21 +30,25 @@ export class DynamicTableComponent implements OnInit {
   pageIndex: number = 0;
   pageSize: number = 5;
   
-  constructor(private searchService: SearchService) { }
+  constructor(private router: Router, private dynamicTableService: DynamicTableService,
+    private alertsService: AlertsService) { }
 
   ngOnInit(): void {
     this.displayedColumns = this.displayedColumns.concat(this.options.columns.map(x => x.key));
     this.displayedColumns.push("actions");
+    this.loadData();
   }
 
-  loadSearch(search: string) {
-    this.searchService.getDataFromSearch(this.options.table, search, this.pageIndex+1, this.pageSize).subscribe(res =>{
-      this.data = res;
+  loadData() {
+    this.dynamicTableService.loadData(this.options.table, this.pageIndex+1, this.pageSize).subscribe(res => {
+      this.data.data = res.data;
+      this.data.totalCount = res.totalCount;
+      this.alertsService.hideAlert();
     })
   }
 
-  restoreData() {
-    this.searchService.restoreData(this.options.table, this.pageIndex+1, this.pageSize).subscribe(res =>{
+  loadSearch(search: string) {
+    this.dynamicTableService.getDataFromSearch(this.options.table, search, this.pageIndex+1, this.pageSize).subscribe(res =>{
       this.data = res;
     })
   }
@@ -48,16 +56,38 @@ export class DynamicTableComponent implements OnInit {
   handlePage(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    const data: PaginatorData = {
-      pageIndex: this.pageIndex,
-      pageSize: this.pageSize
-    }
-    this.changePage.emit(data);
-    this.search ? this.loadSearch(this.search) : this.restoreData();
+    this.search ? this.loadSearch(this.search) : this.loadData();
   }
 
   handleSearchInput() {
-    this.search ? this.loadSearch(this.search) : this.restoreData();
+    this.search && this.search.trim().length > 0 ? this.loadSearch(this.search) : this.loadData();
   }
- 
+
+  viewRow(item: any) {
+    this.router.navigateByUrl(`/dashboard/${this.options.table}/${item.id}`);
+  }
+
+  deleteRowButton(item: any) {
+    Swal.fire({
+      title: !this.populatedData ? '¿Desea eliminar este registro?' : '¿Desea remover el registro de este servicio?',
+      text: !this.populatedData ? "No podrá revertir esto" : "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      allowOutsideClick: false,
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.populatedData ? this.removeFromService.emit(item) : this.deleteItem(item);
+      }
+    })
+  }
+
+  deleteItem(item: any) {
+    this.dynamicTableService.removeRow(this.options.table, item).subscribe(({ deleted }) => {
+      if (deleted) {
+        this.search ? this.loadSearch(this.search) : this.loadData();
+      }
+    })
+  }
 }

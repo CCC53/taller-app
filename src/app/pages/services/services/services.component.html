@@ -2,6 +2,5 @@
     <h1>Servicios</h1>
     <hr>
     <button class="button" mat-raised-button color="primary" (click)="newService()">Agregar</button>
-    <app-dynamic-table [data]="data" [options]="options" (viewItem)="viewItem($event)"
-        (deleteItem)="deleteItem($event)" (changePage)="handlePage($event)"></app-dynamic-table>
+    <app-dynamic-table [options]="options"></app-dynamic-table>
 </div>

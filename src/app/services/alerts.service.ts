@@ -26,6 +26,7 @@ export class AlertsService {
       icon: 'success',
       title: 'Registro guardado correctamente',
       showConfirmButton: true,
+      allowOutsideClick: false,
     })
   }
 
@@ -37,7 +38,8 @@ export class AlertsService {
     Swal.fire({
       title: 'Error',
       icon: 'error',
-      text: error
+      text: error,
+      allowOutsideClick: false
     })
   }
 
@@ -54,6 +56,7 @@ export class AlertsService {
       icon: 'success',
       title: 'Registro guardado correctamente',
       showConfirmButton: true,
+      allowOutsideClick: false
     }).then(res => {
       if (res.isConfirmed) {
         router.navigate(["..", id],  { relativeTo: activatedRoute })

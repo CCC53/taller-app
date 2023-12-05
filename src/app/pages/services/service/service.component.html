@@ -13,14 +13,14 @@
         <h1>Mecanicos asignados</h1>
         <hr>
         <button class="button margin" mat-raised-button color="primary" (click)="addNewEmployee()">Agregar</button>
-        <app-dynamic-table [data]="employeesTableData" [options]="employeesTableOptions" (viewItem)="viewEmployee($event)"
-        (deleteItem)="removeEmployee($event)"></app-dynamic-table>
+        <app-dynamic-table [populatedData]="employeesTableData" [options]="employeesTableOptions"
+            (removeFromService)="removeItem($event)"></app-dynamic-table>
     </div>
     <div class="assignTable" *ngIf="id && id != 'nuevo'">
         <h1>Refacciones a utilizar</h1>
         <hr>
         <button class="button margin" mat-raised-button color="primary" (click)="addNewSparePart()">Agregar</button>
-        <app-dynamic-table [data]="sparePartsTableData" [options]="sparePartsTableOptions"
-            (viewItem)="viewSparePart($event)" (deleteItem)="removeSparePart($event)"></app-dynamic-table>
+        <app-dynamic-table [populatedData]="sparePartsTableData" [options]="sparePartsTableOptions"
+        (removeFromService)="removeItem($event)"></app-dynamic-table>
     </div>
 </div>

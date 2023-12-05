@@ -188,26 +188,14 @@ export class ServiceComponent implements OnInit {
     }
   }
 
-  viewEmployee(employee: Employee) {
-    this.router.navigateByUrl(`/dashboard/employees/${employee.id}`);
-  }
-
-  removeEmployee(employee: Employee) {
-    Swal.fire({
-      title: `¿Desea remover a ${employee.name} de este servicio?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.assignmentsService.removeEmployeeFromService(employee.id).subscribe(res => {
-          if (res.removed) {
-            this.employeesTableData.data = this.employeesTableData.data.filter(e => e.id != employee.id);
-            this.employeesTableData.totalCount--;
-          }
-        })
+  removeItem(item: any) {
+    const table = item.email ? 'employee' : 'spare-part';
+    this.assignmentsService.removeFromService(item, table).subscribe(({ removed }) => {
+      if (removed) {
+        table == "employee" ? this.employeesTableData.data = this.employeesTableData.data.filter(e => e.id != item.id)
+          : this.sparePartsTableData.data = this.sparePartsTableData.data.filter(e => e.id != item.id);
       }
-    })
+    });
   }
 
   addNewEmployee() {
@@ -264,24 +252,6 @@ export class ServiceComponent implements OnInit {
 
   viewSparePart(sparePart: SparePart) {
     this.router.navigateByUrl(`/dashboard/spare-parts/${sparePart.id}`);
-  }
-
-  removeSparePart(sparePart: SparePart) {
-    Swal.fire({
-      title: `¿Desea remover a ${sparePart.name} de este servicio?`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.assignmentsService.removeSparePartFromService(sparePart.id).subscribe(res => {
-          if (res.removed) {
-            this.sparePartsTableData.data = this.sparePartsTableData.data.filter(e => e.id != sparePart.id);
-            this.sparePartsTableData.totalCount--;
-          }
-        })
-      }
-    })
   }
 
   goBack() {

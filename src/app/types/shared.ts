@@ -19,6 +19,7 @@ export interface DynamicTableOptions {
     allowedEdit: boolean;
     allowPagination: boolean;
     showIcon: boolean;
+    searchLabel?: string;
 }
 
 export interface DynamicTableData {
@@ -29,4 +30,8 @@ export interface DynamicTableData {
 export interface PaginatorData {
     pageIndex: number;
     pageSize: number;
+}
+
+export interface DeleteItemResponse {
+    deleted: boolean;
 }

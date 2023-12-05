@@ -55,19 +55,12 @@ export class AssignmentsService {
     );
   }
 
-  removeEmployeeFromService(employeeID: string): Observable<RemoveFromServiceResponse> {
-    return this.http.delete<RemoveFromServiceResponse>(`${this.apiUrl}/assignments/employee/${employeeID}`).pipe(
+  removeFromService(item: any, table: 'spare-part' | 'employee'): Observable<RemoveFromServiceResponse> {
+    return this.http.delete<RemoveFromServiceResponse>(`${this.apiUrl}/assignments/${table}/${item.id}`).pipe(
       catchError(error => {
         throw error.error.error
       })
     )
   }
 
-  removeSparePartFromService(sparePartID: string): Observable<RemoveFromServiceResponse> {
-    return this.http.delete<RemoveFromServiceResponse>(`${this.apiUrl}/assignments/spare-part/${sparePartID}`).pipe(
-      catchError(error => {
-        throw error.error.error
-      })
-    )
-  }
 }

@@ -23,7 +23,3 @@ export interface FindServiceResponse {
 export interface NewServiceResponse extends FindServiceResponse {}
 
 export interface UpdateServiceResponse extends FindServiceResponse {}
-
-export interface DeleteItemResponse {
-    deleted: boolean;
-}

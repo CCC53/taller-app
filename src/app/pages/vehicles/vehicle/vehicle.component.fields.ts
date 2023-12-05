@@ -25,6 +25,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Marca',
+            maxLength: 15,
             placeholder: 'Ingrese la marca del vehiculo',
             required: true
         },
@@ -37,6 +38,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Modelo',
+            maxLength: 15,
             placeholder: 'Ingrese el modelo del vehiculo',
             required: true
         },
@@ -65,6 +67,8 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Año',
+            min: 1970,
+            max: new Date().getFullYear(),
             placeholder: 'Ingrese el año del vehiculo',
             required: true,
             type: 'number'
@@ -78,6 +82,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Numero de chasis',
+            maxLength: 10,
             placeholder: 'Ingrese el numero de chasis',
             required: true
         },
@@ -90,6 +95,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Motor',
+            maxLength: 15,
             placeholder: 'Ingrese el motor del vehiculo',
             required: true
         },
@@ -102,6 +108,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Placa',
+            maxLength: 10,
             placeholder: 'Ingrese la placa del vehiculo',
             required: true
         },
@@ -114,6 +121,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Propietario',
+            maxLength: 50,
             placeholder: 'Ingrese el nombre del propietario del vehiculo',
             required: true
         },
@@ -126,6 +134,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Email del propietario',
+            maxLength: 30,
             placeholder: 'Ingrese el email del propietario del vehiculo',
             required: true,
             type: 'email'

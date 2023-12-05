@@ -19,6 +19,7 @@ export const serviceViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Motivo',
+            maxLength: 20,
             placeholder: 'Ingrese el motivo del servicio',
             required: true,
         },
