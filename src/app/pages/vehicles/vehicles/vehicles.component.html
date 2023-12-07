@@ -1,6 +1,6 @@
 <div>
     <h1>Vehiculos</h1>
     <hr>
-    <button class="button" mat-raised-button color="primary" (click)="newVehicle()">Agregar</button>
+    <button *ngIf="allowCreate" class="button" mat-raised-button color="primary" (click)="newVehicle()">Agregar</button>
     <app-dynamic-table [options]="options"></app-dynamic-table>
 </div>

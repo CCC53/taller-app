@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AssignmentEmployeeResponse, AssignmentSparePartResponse, FindEmployeesAviableSelect, FindSparePartsAviableSelect,
+import { AssignmentResponse, FindItemsAviableSelect,
         FindVehiclesSelect, RemoveFromServiceResponse } from '../types/assignments';
 
 @Injectable({
@@ -15,40 +15,24 @@ export class AssignmentsService {
 
   constructor(private http: HttpClient) { }
 
-  findVehiclesSelect(): Observable<FindVehiclesSelect> {
-    return this.http.get<FindVehiclesSelect>(`${this.apiUrl}/vehicles/select`).pipe(
+  findItemsAviable(table: string): Observable<FindItemsAviableSelect> {
+    return this.http.get<FindItemsAviableSelect>(`${this.apiUrl}/assignments/${table}`).pipe(
       catchError(error => {
         throw error.error.error
       })
     );
   }
 
-  findEmployeesAviable(): Observable<FindEmployeesAviableSelect> {
-    return this.http.get<FindEmployeesAviableSelect>(`${this.apiUrl}/assignments/employees`).pipe(
+  assignEmployeeToService(id: string, data: any): Observable<AssignmentResponse> {
+    return this.http.put<AssignmentResponse>(`${this.apiUrl}/assignments/employee/${id}`, data).pipe(
       catchError(error => {
         throw error.error.error
       })
     );
   }
 
-  findSparePartsAviable(): Observable<FindSparePartsAviableSelect> {
-    return this.http.get<FindSparePartsAviableSelect>(`${this.apiUrl}/assignments/spare-parts`).pipe(
-      catchError(error => {
-        throw error.error.error
-      })
-    )
-  }
-
-  assignEmployeeToService(id: string, data: any): Observable<AssignmentEmployeeResponse> {
-    return this.http.put<AssignmentEmployeeResponse>(`${this.apiUrl}/assignments/employee/${id}`, data).pipe(
-      catchError(error => {
-        throw error.error.error
-      })
-    );
-  }
-
-  assignSparePartToService(id: string, data: any): Observable<AssignmentSparePartResponse> {
-    return this.http.put<AssignmentSparePartResponse>(`${this.apiUrl}/assignments/spare-part/${id}`, data).pipe(
+  assignSparePartToService(id: string, data: any): Observable<AssignmentResponse> {
+    return this.http.put<AssignmentResponse>(`${this.apiUrl}/assignments/spare-part/${id}`, data).pipe(
       catchError(error => {
         throw error.error.error
       })

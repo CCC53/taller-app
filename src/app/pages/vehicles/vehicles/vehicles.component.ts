@@ -12,6 +12,7 @@ import { DynamicTableOptions } from 'src/app/types/shared';
 })
 export class VehiclesComponent implements OnInit {
 
+  allowCreate: boolean = true;
   options: DynamicTableOptions = {
     columns: [
       { key: "brand", label: 'Marca' },
@@ -31,12 +32,13 @@ export class VehiclesComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService, private alertsService: AlertsService) { }
 
   ngOnInit(): void {
-    // this.alertsService.showLoading();
+    this.alertsService.showLoading();
     this.authService.getMe().subscribe(({ me }) => {
       const { role } = me;
       if (role === ValidRoles.MECHANIC) {
         this.options.allowedDelete = false;
         this.options.allowedEdit = false;
+        this.allowCreate = false;
       }
     });
   }

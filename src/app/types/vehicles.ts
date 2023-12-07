@@ -20,11 +20,6 @@ export enum validVehicles {
 	PICKUP = "pickup"
 }
 
-export interface FindVehiclesResponse {
-    vehicles: Vehicle[];
-    totalCount: number;
-}
-
 export interface FindVehicleResponse {
     vehicle: Vehicle;
 }

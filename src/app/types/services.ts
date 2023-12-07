@@ -11,11 +11,6 @@ export interface Service {
     spareParts: SparePart[];
 }
 
-export interface FindServicesResponse {
-    services: Service[];
-    totalCount: number;
-}
-
 export interface FindServiceResponse {
     service: Service;
 }

@@ -8,11 +8,6 @@ export interface Employee {
     serviceID?: string;
 }
 
-export interface FindEmployeesResponse {
-    employees: Employee[];
-    totalCount: number;
-}
-
 export interface FindEmployeeResponse {
     employee: Employee;
 } 

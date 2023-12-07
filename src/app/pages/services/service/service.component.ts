@@ -113,25 +113,25 @@ export class ServiceComponent implements OnInit {
   }
 
   loadVehicleSelect() {
-    this.assignmentsService.findVehiclesSelect().subscribe(({ vehiclesSelect }) => {
+    this.assignmentsService.findItemsAviable("vehicles").subscribe(({ data }) => {
       if (this.fields[3].props) {
-        this.fields[3].props.options = vehiclesSelect;
+        this.fields[3].props.options = data;
       }
     })
   }
 
   loadEmployeesAviableSelect() {
-    this.assignmentsService.findEmployeesAviable().subscribe(({ employeesAviable }) => {
+    this.assignmentsService.findItemsAviable("employees").subscribe(({ data }) => {
       if (this.addEmployeeFields[0].props) {
-        this.addEmployeeFields[0].props.options = employeesAviable;
+        this.addEmployeeFields[0].props.options = data;
       }
     });
   }
 
   loadSparePartsAviableSelect() {
-    this.assignmentsService.findSparePartsAviable().subscribe(({ sparePartsAviable }) => {
+    this.assignmentsService.findItemsAviable("spare-parts").subscribe(({ data }) => {
       if (this.addSparePartFields[0].props) {
-        this.addSparePartFields[0].props.options = sparePartsAviable;
+        this.addSparePartFields[0].props.options = data;
       }
     });
   }

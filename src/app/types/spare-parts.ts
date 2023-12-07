@@ -14,11 +14,6 @@ export enum validSpareParts {
 	REPLACEMENT = "replacement"
 }
 
-export interface FindSparePartsResponse {
-    spareParts: SparePart[];
-    totalCount: number;
-}
-
 export interface FindSparePartResponse {
     sparePart: SparePart;
 }
