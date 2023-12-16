@@ -21,7 +21,7 @@ export const employeeViewFields: FormlyFieldConfig[] = [
             label: 'Nombre',
             placeholder: 'Ingrese el nombre del empleado',
             required: true,
-            maxLength: 20
+            maxLength: 50
         },
         validators: {
             validation : ['text-only', 'blank-space']
@@ -35,7 +35,7 @@ export const employeeViewFields: FormlyFieldConfig[] = [
             placeholder: 'Ingrese el email del empleado',
             required: true,
             type: 'email',
-            maxLength: 20
+            maxLength: 50
         },
         validators: {
             validation: ['email']

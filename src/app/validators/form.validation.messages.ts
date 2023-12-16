@@ -17,5 +17,6 @@ export const appValidators = {
         { name: 'number', message: 'Solo se permiten números' },
         { name: 'max-length', message: 'La contraseña debe ser de mínimo 5 caracteres' },
         { name: 'required', message: 'Este campo es obligatorio' },
+        { name: 'blank-space', message: 'No se permiten espacios al inicio y al final' },
     ],
 };

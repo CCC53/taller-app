@@ -19,7 +19,7 @@ export const serviceViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Motivo',
-            maxLength: 20,
+            maxLength: 50,
             placeholder: 'Ingrese el motivo del servicio',
             required: true,
         },
@@ -101,9 +101,11 @@ export const addSparePart: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Cantidad a utilizar',
+            maxLength: 15,
+            min: 1,
             placeholder: 'Cantidad a utilizar',
             required: true,
             type: 'number'
-        }
+        },
     }
 ]

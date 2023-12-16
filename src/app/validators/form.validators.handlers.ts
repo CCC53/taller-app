@@ -1,11 +1,11 @@
 import { AbstractControl } from '@angular/forms';
 
 const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-const textOnlyRegex = new RegExp(/^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$/g);
+const textOnlyRegex = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/);
 const textNumbersOnlyRegex = new RegExp(/^[a-zA-Z0-9 ]*$/);
 const numbersOnlyRegex = new RegExp(/^[a-zA-Z0-9 ]*$/);
 const maxLengthRegex = new RegExp(/^.{5,}$/);
-const blankSpaceRegex = new RegExp("[^ ]+");
+const blankSpaceRegex = new RegExp(/^[^\s].*[^\s]$/);
 
 export function emailValidator(control: AbstractControl) {
     return emailRegex.test(control.value) ? null : { 'email': true };

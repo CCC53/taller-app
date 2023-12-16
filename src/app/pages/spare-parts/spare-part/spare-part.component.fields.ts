@@ -22,7 +22,7 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Nombre',
-            maxLength: 15,
+            maxLength: 30,
             placeholder: 'Ingrese el nombre de la refacción',
             required: true,
         },

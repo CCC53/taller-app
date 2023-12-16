@@ -13,7 +13,7 @@ export const updateProfileViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Nombre',
-            maxLength: 15,
+            maxLength: 50,
             placeholder: 'Ingrese el nombre del empleado',
             required: true
         },
@@ -26,7 +26,7 @@ export const updateProfileViewFields: FormlyFieldConfig[] = [
         type: 'input',
         props: {
             label: 'Email',
-            maxLength: 20,
+            maxLength: 50,
             placeholder: 'Ingrese el email del empleado',
             required: true,
             type: 'email'
