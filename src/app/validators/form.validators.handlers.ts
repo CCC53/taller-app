@@ -38,6 +38,7 @@ export function denyValuesInSearch(control: AbstractControl) {
 }
 
 export function validEmailDomain(control: AbstractControl) {
-    const validDomains = ["hotmail", "gmail", "yahoo", "outlook", "live"];
-    return validDomains.indexOf(control.value) < 0 ? { 'valid-domain': true } : null;
+    const validDomains = ["hotmail.com", "gmail.com", "yahoo.com", "outlook.com", "live.com"];
+    const domain = control.value && control.value.split("@")[1];
+    return validDomains.includes(domain) ? null : { 'valid-domain': true };
 }
