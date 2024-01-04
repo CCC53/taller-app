@@ -33,7 +33,7 @@ export class ServicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.alertsService.showLoading();
+    this.alertsService.showLoading();
     this.authService.getMe().subscribe(({ me }) => {
       const { role } = me;
       if (role === ValidRoles.MECHANIC) {
