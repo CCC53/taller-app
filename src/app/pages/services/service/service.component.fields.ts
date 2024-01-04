@@ -24,7 +24,7 @@ export const serviceViewFields: FormlyFieldConfig[] = [
             required: true,
         },
         validators: {
-            validation: ['text-only']
+            validation: ['text-only', 'blank-space']
         }
     },
     {
@@ -73,11 +73,11 @@ export const addEmployee: FormlyFieldConfig[] = [
         key: 'employeeID',
         type: 'select',
         props: {
-            label: 'Agregar mecanico',
-            placeholder: 'Seleccione un mecanico',
+            label: 'Agregar mecánico',
+            placeholder: 'Seleccione un mecánico',
             required: true,
             options: [
-                { label: 'Seleccione un mecanico', value: null }
+                { label: 'Seleccione un mecánico', value: null }
             ]
         }
     }
@@ -88,11 +88,11 @@ export const addSparePart: FormlyFieldConfig[] = [
         key: 'sparePartID',
         type: 'select',
         props: {
-            label: 'Agregar refaccion',
-            placeholder: 'Seleccione una refaccion',
+            label: 'Agregar refacción',
+            placeholder: 'Seleccione una refacción',
             required: true,
             options: [
-                { label: 'Seleccione un refaccion', value: null }
+                { label: 'Seleccione un refacción', value: null }
             ]
         }
     },

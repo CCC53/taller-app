@@ -10,7 +10,7 @@
         <button class="button w-100" mat-raised-button color="primary" [disabled]="!changed || !form.valid">Enviar</button>
     </form>
     <div class="assignTable" *ngIf="id && id != 'nuevo'">
-        <h1>Mecanicos asignados</h1>
+        <h1>Mecánicos asignados</h1>
         <hr>
         <button class="button margin" mat-raised-button color="primary" (click)="addNewEmployee()">Agregar</button>
         <app-dynamic-table [populatedData]="employeesTableData" [options]="employeesTableOptions"

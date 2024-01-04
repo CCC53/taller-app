@@ -21,15 +21,6 @@ export class AlertsService {
     Swal.showLoading();
   }
 
-  showSuccessAlert() {
-    Swal.fire({
-      icon: 'success',
-      title: 'Registro guardado correctamente',
-      showConfirmButton: true,
-      allowOutsideClick: false,
-    })
-  }
-
   hideAlert() {
     Swal.close();
   }
@@ -51,7 +42,7 @@ export class AlertsService {
     })
   }
 
-  showSucessCreate(router: Router, activatedRoute: ActivatedRoute, id: string) {
+  showSuccessAlert(router: Router, table: string) {
     Swal.fire({
       icon: 'success',
       title: 'Registro guardado correctamente',
@@ -59,8 +50,17 @@ export class AlertsService {
       allowOutsideClick: false
     }).then(res => {
       if (res.isConfirmed) {
-        router.navigate(["..", id],  { relativeTo: activatedRoute })
+        router.navigateByUrl(`/dashboard/${table}`)
       }
+    })
+  }
+
+  showSuccessAlertRegisterInService() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Registro guardado correctamente',
+      showConfirmButton: true,
+      allowOutsideClick: false,
     })
   }
 }

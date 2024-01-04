@@ -8,11 +8,11 @@ export const loginFormFields: FormlyFieldConfig[] = [
             label: 'Email',
             placeholder: 'Ingrese su email',
             required: true,
-            maxLength: 20,
+            maxLength: 50,
             type: 'email'
         },
         validators: {
-            validation: ['email']
+            validation: ['email', 'valid-domain']
         }
     },
     {
@@ -26,7 +26,7 @@ export const loginFormFields: FormlyFieldConfig[] = [
             type: 'password'
         },
         validators: {
-            validation: ['max-length']
+            validation: ['max-length', 'blank-space']
         }
     }
 ];

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PageEvent } from '@angular/material/paginator';
 import Swal from 'sweetalert2';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { DynamicTableService } from 'src/app/services/dynamic-table.service';
 import { DynamicTableData, DynamicTableOptions } from 'src/app/types/shared';
+import { textOnlyRegex, blankSpaceRegex, denyValuesInSearch } from 'src/app/validators/form.validators.handlers';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -23,7 +25,7 @@ export class DynamicTableComponent implements OnInit {
     totalCount: 0
   };
   displayedColumns: string[] = [];
-  search: string | null = null;
+  searchInput: FormControl = new FormControl();
   
   // Paginator
   pageSizeOptions: number[] = [5, 10, 15, 20];
@@ -36,6 +38,7 @@ export class DynamicTableComponent implements OnInit {
   ngOnInit(): void {
     this.displayedColumns = this.displayedColumns.concat(this.options.columns.map(x => x.key));
     this.displayedColumns.push("actions");
+    this.searchInput.addValidators([Validators.pattern(textOnlyRegex), Validators.pattern(blankSpaceRegex), denyValuesInSearch])
     this.loadData();
   }
 
@@ -49,18 +52,18 @@ export class DynamicTableComponent implements OnInit {
 
   loadSearch(search: string) {
     this.dynamicTableService.getDataFromSearch(this.options.table, search, this.pageIndex+1, this.pageSize).subscribe(res =>{
-      this.data = res;
-    })
+        this.data = res;
+    });
   }
 
   handlePage(event: PageEvent) {
     this.pageIndex = event.pageIndex;
     this.pageSize = event.pageSize;
-    this.search ? this.loadSearch(this.search) : this.loadData();
+    this.searchInput.value ? this.loadSearch(this.searchInput.value) : this.loadData();
   }
 
   handleSearchInput() {
-    this.search && this.search.trim().length > 0 ? this.loadSearch(this.search) : this.loadData();
+    this.searchInput.valid && this.searchInput.value?.trim().length >= 3 ? this.loadSearch(this.searchInput.value) : this.loadData();
   }
 
   viewRow(item: any) {
@@ -86,7 +89,7 @@ export class DynamicTableComponent implements OnInit {
   deleteItem(item: any) {
     this.dynamicTableService.removeRow(this.options.table, item).subscribe(({ deleted }) => {
       if (deleted) {
-        this.search ? this.loadSearch(this.search) : this.loadData();
+        this.searchInput ? this.loadSearch(this.searchInput.value) : this.loadData();
       }
     })
   }

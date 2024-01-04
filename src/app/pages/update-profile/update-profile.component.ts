@@ -49,7 +49,7 @@ export class UpdateProfileComponent implements OnInit {
     this.alertsService.showLoading();
     this.authService.updateProfile(this.model).subscribe(res => {
       this.alertsService.hideAlert();
-      this.alertsService.showSuccessAlert();
+      this.alertsService.showSuccessAlert(this.router, "services");
       this.original = Object.assign({}, this.original, res.me);
       this.changed = false;
     });

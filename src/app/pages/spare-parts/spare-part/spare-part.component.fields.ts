@@ -27,7 +27,7 @@ export const sparePartViewFields: FormlyFieldConfig[] = [
             required: true,
         },
         validators: {
-            validation: ['text-only']
+            validation: ['text-only', 'blank-space']
         }
     },
     {

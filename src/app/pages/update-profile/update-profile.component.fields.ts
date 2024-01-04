@@ -32,7 +32,7 @@ export const updateProfileViewFields: FormlyFieldConfig[] = [
             type: 'email'
         },
         validators: {
-            validation: ['email']
+            validation: ['email', 'valid-domain']
         }
     },
     {
@@ -46,7 +46,7 @@ export const updateProfileViewFields: FormlyFieldConfig[] = [
             options: [
                 { label: 'Seleccione un rol', value: null },
                 { label: 'Administrador', value: ValidRoles.ADMIN },
-                { label: 'Mecanico', value: ValidRoles.MECHANIC }
+                { label: 'Mecánico', value: ValidRoles.MECHANIC }
             ]
         }
     }

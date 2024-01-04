@@ -1,5 +1,5 @@
 import { emailValidator, numbersOnlyValidator, textNumbersOnlyValidator,
-            textOnlyValidator, maxLengthPassword, blankSpaceValidator } from './form.validators.handlers';
+            textOnlyValidator, maxLengthPassword, blankSpaceValidator, validEmailDomain } from './form.validators.handlers';
 
 export const appValidators = {
     validators: [
@@ -8,7 +8,8 @@ export const appValidators = {
         { name: 'text-number', validation: textNumbersOnlyValidator },
         { name: 'number', validation: numbersOnlyValidator },
         { name: 'max-length', validation: maxLengthPassword },
-        { name: 'blank-space', validation: blankSpaceValidator }
+        { name: 'blank-space', validation: blankSpaceValidator },
+        { name: 'valid-domain', validation: validEmailDomain }
     ],
     validationMessages: [
         { name: 'email', message: 'No es un correo válido' },
@@ -18,5 +19,6 @@ export const appValidators = {
         { name: 'max-length', message: 'La contraseña debe ser de mínimo 5 caracteres' },
         { name: 'required', message: 'Este campo es obligatorio' },
         { name: 'blank-space', message: 'No se permiten espacios al inicio y al final' },
+        { name: 'valid-domain', message: 'No es un dominio valido' }
     ],
 };

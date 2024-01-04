@@ -1,6 +1,6 @@
 <div>
-    <p *ngIf="type === 'employee'">Agregar mecanico</p>
-    <p *ngIf="type === 'spare-part'">Agregar refaccion</p>
+    <p *ngIf="type === 'employee'">Agregar mecánico</p>
+    <p *ngIf="type === 'spare-part'">Agregar refacción</p>
     <div>
         <form [formGroup]="form" (submit)="onSubmit()">
             <formly-form [model]="model" [form]="form" [fields]="fields"></formly-form>

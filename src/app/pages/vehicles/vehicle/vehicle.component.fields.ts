@@ -30,7 +30,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-only']
+            validation: ['text-only', 'blank-space']
         }
     },
     {
@@ -43,7 +43,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-number']
+            validation: ['text-number', 'blank-space']
         }
     },
     {
@@ -87,7 +87,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-number']
+            validation: ['text-number', 'blank-space']
         }
     },
     {
@@ -100,7 +100,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-number']
+            validation: ['text-number', 'blank-space']
         }
     },
     {
@@ -113,7 +113,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-number']
+            validation: ['text-number', 'blank-space']
         }
     },
     {
@@ -126,7 +126,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             required: true
         },
         validators: {
-            validation: ['text-only']
+            validation: ['text-only', 'blank-space']
         }
     },
     {
@@ -140,7 +140,7 @@ export const vehicleViewFields: FormlyFieldConfig[] = [
             type: 'email'
         },
         validators: {
-            validation: ['email']
+            validation: ['email', 'valid-domain']
         }
     }
 ];

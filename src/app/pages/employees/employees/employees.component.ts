@@ -23,6 +23,7 @@ export class EmployeesComponent implements OnInit {
     allowedDelete: true,
     allowedEdit: true,
     allowPagination: true,
+    minLength: 50
   }
 
   constructor(private router: Router, private alertsService: AlertsService) { }

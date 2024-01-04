@@ -20,6 +20,7 @@ export interface DynamicTableOptions {
     allowPagination: boolean;
     showIcon: boolean;
     searchLabel?: string;
+    minLength?: number;
 }
 
 export interface DynamicTableData {

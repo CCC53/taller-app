@@ -6,6 +6,8 @@ export class MatPaginatorIntlEs extends MatPaginatorIntl {
     override itemsPerPageLabel = 'Elementos por página';
     override nextPageLabel = 'Siguiente página';
     override previousPageLabel = 'Página anterior';
+    override lastPageLabel = "Última página";
+    override firstPageLabel = "Primera página";
 
     override getRangeLabel = (page: number, pageSize: number, length: number) =>  {
         if (length === 0 || pageSize === 0) {

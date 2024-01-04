@@ -75,7 +75,7 @@ export class SparePartComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.sparePart.id);
+          this.alertsService.showSuccessAlert(this.router, "spare-parts");
           this.loadSparePart(res.sparePart);
         }, 200);
       },
@@ -89,7 +89,7 @@ export class SparePartComponent implements OnInit {
       this.sparePartsSerice.updateOne(this.model, this.id).subscribe({
         next: res => {
           this.alertsService.hideAlert();
-          this.alertsService.showSuccessAlert();
+          this.alertsService.showSuccessAlert(this.router, "spare-parts");
           this.original = Object.assign({}, this.original, res.sparePart);
           this.changed = false;
         },

@@ -1,7 +1,8 @@
 <div *ngIf="options.allowSearch">
   <mat-form-field class="search">
     <mat-label>{{options.searchLabel}}</mat-label>
-    <input [(ngModel)]="search" matInput placeholder="Ingrese el termino a buscar" (keyup)="handleSearchInput()">
+    <input matInput [maxlength]="options.minLength ? options.minLength: 30"
+      [formControl]="searchInput" placeholder="Ingrese el termino a buscar" (keyup)="handleSearchInput()">
     <mat-icon matSuffix color="primary">search</mat-icon>
   </mat-form-field>
 </div>

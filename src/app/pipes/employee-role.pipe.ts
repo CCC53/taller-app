@@ -7,7 +7,7 @@ import { ValidRoles } from '../types/auth';
 export class EmployeeRolePipe implements PipeTransform {
 
   transform(role: ValidRoles): string {
-    return role == ValidRoles.ADMIN ? 'Administrador' : 'Mecanico';
+    return role == ValidRoles.ADMIN ? 'Administrador' : 'Mecánico';
   }
 
 }

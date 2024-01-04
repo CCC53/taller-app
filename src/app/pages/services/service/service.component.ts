@@ -53,7 +53,7 @@ export class ServiceComponent implements OnInit {
       { key: 'name', label: 'Nombre' },
       { key: 'disponible', label: 'Cantidad disponible' },
       { key: 'price', label: 'Precio unitario', pipe: 'currency' },
-      { key: 'type', label: 'Tipo de refaccion', pipe: 'sparePartType' }
+      { key: 'type', label: 'Tipo de refacción', pipe: 'sparePartType' }
     ],
     table: 'spare-parts',
     showIcon: true,
@@ -165,7 +165,7 @@ export class ServiceComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.service.id);
+          this.alertsService.showSuccessAlert(this.router, "services");
           this.loadService(res.service);
         }, 200);
       },
@@ -179,7 +179,7 @@ export class ServiceComponent implements OnInit {
       this.serviceService.updateOne(this.model, this.id).subscribe({
         next: res => {
           this.alertsService.hideAlert();
-          this.alertsService.showSuccessAlert();
+          this.alertsService.showSuccessAlert(this.router, "services");
           this.original = Object.assign({}, this.original, res.service);
           this.changed = false;
         },
@@ -212,7 +212,7 @@ export class ServiceComponent implements OnInit {
             next: res => {
               if (res.assigned) {
                 this.alertsService.hideAlert();
-                this.alertsService.showSuccessAlert();
+                this.alertsService.showSuccessAlertRegisterInService();
                 this.employeesTableData.data = [...this.employeesTableData.data, res.assigned];
                 this.employeesTableData.totalCount++;
               }
@@ -238,7 +238,7 @@ export class ServiceComponent implements OnInit {
             next: res => {
               if (res.assigned) {
                 this.alertsService.hideAlert();
-                this.alertsService.showSuccessAlert();
+                this.alertsService.showSuccessAlertRegisterInService();
                 this.sparePartsTableData.data = [...this.sparePartsTableData.data, res.assigned];
                 this.sparePartsTableData.totalCount++;
               }

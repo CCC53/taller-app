@@ -78,7 +78,7 @@ export class EmployeeComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.employee.id);
+          this.alertsService.showSuccessAlert(this.router, "employees");
           this.loadEmployee(res.employee);
         }, 200);
       },
@@ -92,7 +92,7 @@ export class EmployeeComponent implements OnInit {
       this.employeesService.updateOne(this.model, this.id).subscribe({
         next: res => {
           this.alertsService.hideAlert();
-          this.alertsService.showSuccessAlert();
+          this.alertsService.showSuccessAlert(this.router, "employees");
           this.original = Object.assign({}, this.original, res.employee);
           this.changed = false;
         },

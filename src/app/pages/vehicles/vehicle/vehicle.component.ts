@@ -74,7 +74,7 @@ export class VehicleComponent implements OnInit {
       next: res => {
         this.alertsService.hideAlert();
         setTimeout(() => {
-          this.alertsService.showSucessCreate(this.router, this.activatedRoute, res.vehicle.id);
+          this.alertsService.showSuccessAlert(this.router, "vehicles");
           this.loadVehicle(res.vehicle);
         }, 200);
       },
@@ -88,7 +88,7 @@ export class VehicleComponent implements OnInit {
       this.vehiclesService.updateOne(this.model, this.id).subscribe({
         next: res => {
           this.alertsService.hideAlert();
-          this.alertsService.showSuccessAlert();
+          this.alertsService.showSuccessAlert(this.router, "vehicles");
           this.original = Object.assign({}, this.original, res.vehicle);
           this.changed = false;
         },
